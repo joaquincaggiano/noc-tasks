@@ -14,4 +14,23 @@ export class LogEntity {
     this.level = level;
     this.createdAt = new Date();
   }
+
+  static fromJson = (json: string): LogEntity => {
+    const { level, message, createdAt } = JSON.parse(json);
+
+    if (!message) throw new Error("Message is required");
+    if (!level) throw new Error("Level is required");
+    if (
+      level !== LogSeverityLevel.low &&
+      level !== LogSeverityLevel.medium &&
+      level !== LogSeverityLevel.high
+    ) {
+      throw new Error("Level is invalid");
+    }
+
+    const log = new LogEntity(message, level);
+    log.createdAt = new Date(createdAt);
+
+    return log;
+  };
 }
