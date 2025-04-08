@@ -6,8 +6,12 @@ export class Server {
     console.log("Server is running...");
 
     const job = CronService.createJob("*/5 * * * * *", () => {
-      console.log("You will see this message every second");
-      new CheckService().execute("https://www.google.com");
+      const url = "https://www.google.com";
+      
+      new CheckService(
+        () => console.log(`Service ${url} is ok`),
+        (error) => console.log(error)
+      ).execute(url);
     });
   }
 }
