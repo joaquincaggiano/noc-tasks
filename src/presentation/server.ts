@@ -12,7 +12,7 @@ export class Server {
   static async start() {
     console.log("Server is running...");
 
-    const emailService = new EmailService();
+    const emailService = new EmailService(fileSystemlogRepository);
 
     emailService.sendEmailWithFileSystemLogs("jcaggiano@desaway.es");
 
