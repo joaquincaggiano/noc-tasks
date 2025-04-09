@@ -14,16 +14,20 @@ export class Server {
 
     const emailService = new EmailService();
 
-    emailService.sendEmail({
-      to: "jcaggiano@desaway.es",
-      subject: "Logs de sistema",
-      htmlBody: `
-        <h1>Logs de sistema - NOC</h1>
-        <p>Hola, este es un mensaje de prueba</p>
-      `,
-    });
+    emailService.sendEmailWithFileSystemLogs("jcaggiano@desaway.es");
+
+    // emailService.sendEmail({
+    //   to: "jcaggiano@desaway.es",
+    //   subject: "Logs de sistema",
+    //   htmlBody: `
+    //     <h1>Logs de sistema - NOC</h1>
+    //     <p>Hola, este es un mensaje de prueba</p>
+    //     <p>Ver logs adjuntos</p>
+    //   `,
+    // });
 
     // CronService.createJob("*/5 * * * * *", () => {
+    //   // const url = "http://localhost:3000";
     //   const url = "https://www.google.com";
 
     //   new CheckService(
