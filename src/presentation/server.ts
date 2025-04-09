@@ -3,28 +3,23 @@ import { CheckService } from "../domain/use-cases/checks/check-service";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { EmailService } from "./email/email.service";
+import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 
 const fileSystemlogRepository = new LogRepositoryImpl(
   new FileSystemDatasource()
 );
 
+const emailService = new EmailService();
+
 export class Server {
   static async start() {
     console.log("Server is running...");
 
-    const emailService = new EmailService(fileSystemlogRepository);
-
-    emailService.sendEmailWithFileSystemLogs("jcaggiano@desaway.es");
-
-    // emailService.sendEmail({
-    //   to: "jcaggiano@desaway.es",
-    //   subject: "Logs de sistema",
-    //   htmlBody: `
-    //     <h1>Logs de sistema - NOC</h1>
-    //     <p>Hola, este es un mensaje de prueba</p>
-    //     <p>Ver logs adjuntos</p>
-    //   `,
-    // });
+    // const sendEmailLogs = new SendEmailLogs(
+    //   emailService,
+    //   fileSystemlogRepository
+    // );
+    // sendEmailLogs.execute("jcaggiano@desaway.es");
 
     // CronService.createJob("*/5 * * * * *", () => {
     //   // const url = "http://localhost:3000";
