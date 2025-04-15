@@ -30,17 +30,9 @@ export class LogEntity {
   }
 
   static fromJson = (json: string): LogEntity => {
-    const { level, message, createdAt, origin } = JSON.parse(json);
+    json = json === "" ? "{}" : json;
 
-    if (!message) throw new Error("Message is required");
-    if (!level) throw new Error("Level is required");
-    if (
-      level !== LogSeverityLevel.low &&
-      level !== LogSeverityLevel.medium &&
-      level !== LogSeverityLevel.high
-    ) {
-      throw new Error("Level is invalid");
-    }
+    const { level, message, createdAt, origin } = JSON.parse(json);
 
     const log = new LogEntity({ message, level, origin, createdAt });
 
@@ -50,15 +42,15 @@ export class LogEntity {
   static fromObject = (object: { [key: string]: any }): LogEntity => {
     const { message, level, origin, createdAt } = object;
 
-    if (!message) throw new Error("Message is required");
-    if (!level) throw new Error("Level is required");
-    if (
-      level !== LogSeverityLevel.low &&
-      level !== LogSeverityLevel.medium &&
-      level !== LogSeverityLevel.high
-    ) {
-      throw new Error("Level is invalid");
-    }
+    // if (!message) throw new Error("Message is required");
+    // if (!level) throw new Error("Level is required");
+    // if (
+    //   level !== LogSeverityLevel.low &&
+    //   level !== LogSeverityLevel.medium &&
+    //   level !== LogSeverityLevel.high
+    // ) {
+    //   throw new Error("Level is invalid");
+    // }
 
     const log = new LogEntity({ message, level, origin, createdAt });
 
