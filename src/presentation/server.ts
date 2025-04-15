@@ -6,13 +6,12 @@ import { EmailService } from "./email/email.service";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 import { MongoLogDatasource } from "../infrastructure/datasources/mongo-log.datasource";
 import { LogSeverityLevel } from "../domain/entities/log.entity";
+import { PostgresLogDatasource } from "../infrastructure/datasources/postgres-log.datasource";
 
-const fileSystemlogRepository = new LogRepositoryImpl(
-  new FileSystemDatasource()
-);
-
-const mongoLogRepository = new LogRepositoryImpl(
-  new MongoLogDatasource()
+const logRepository = new LogRepositoryImpl(
+  // new FileSystemDatasource(),
+  // new MongoLogDatasource(),
+  new PostgresLogDatasource()
 );
 
 const emailService = new EmailService();
@@ -32,15 +31,15 @@ export class Server {
     // );
     // sendEmailLogs.execute("jcaggiano@desaway.es");
 
-    // CronService.createJob("*/5 * * * * *", () => {
-    //   // const url = "http://localhost:3000";
-    //   const url = "https://www.google.com";
+    CronService.createJob("*/5 * * * * *", () => {
+      // const url = "http://localhost:3000";
+      const url = "https://www.google.com";
 
-    //   new CheckService(
-    //     mongoLogRepository,
-    //     () => console.log(`Service ${url} is ok`),
-    //     (error) => console.log(error)
-    //   ).execute(url);
-    // });
+      new CheckService(
+        logRepository,
+        () => console.log(`Service ${url} is ok`),
+        (error) => console.log(error)
+      ).execute(url);
+    });
   }
 }
