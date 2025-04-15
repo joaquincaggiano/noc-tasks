@@ -11,3 +11,6 @@ El objetivo es crear una serie de tareas usando Arquitectura Limpia con Typescri
    docker compose up -d
    ```
 5. Ejecutar el comando ```npm run dev ```
+
+## Obtener Gmail Key
+[Google AppPasswords](https://myaccount.google.com/u/0/apppasswords)
