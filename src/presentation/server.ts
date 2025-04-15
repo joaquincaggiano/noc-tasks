@@ -21,10 +21,10 @@ export class Server {
   static async start() {
     console.log("Server is running...");
 
-    const logs = await fileSystemlogRepository.getLogs(
-      LogSeverityLevel.low
-    );
-    console.log(logs);
+    // const logs = await fileSystemlogRepository.getLogs(
+    //   LogSeverityLevel.low
+    // );
+    // console.log(logs);
 
     // const sendEmailLogs = new SendEmailLogs(
     //   emailService,
