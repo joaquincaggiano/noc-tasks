@@ -8,7 +8,11 @@ DS_Store
 logs
 
 mongo/
+mongo-test/
 
 postgres/
+postgres-test/
 
 generated/
+
+coverage/
