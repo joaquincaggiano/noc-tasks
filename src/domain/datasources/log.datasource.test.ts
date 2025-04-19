@@ -17,7 +17,7 @@ describe("LogDatasource", () => {
     }
   }
 
-  test("should test the abstract class", async () => {
+  test("should test the abstract class log datasource", async () => {
     const mockLogDatasource = new MockLogDatasource();
 
     expect(mockLogDatasource).toBeInstanceOf(MockLogDatasource);
